@@ -1,0 +1,15 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="data.config" />
+          <option value="aiogram.dispatcher.dispatcher.Dispatcher.massage_handler" />
+          <option value="utils.notify_admins" />
+          <option value="utils.set_bot_commands" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

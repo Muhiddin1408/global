@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load materializecss %}
+
+{% block content %}
+<div style="background:#f4f4f4;">
+    <div class="container">
+        <form enctype="{% url 'create-post' %}" method="post">
+            {% csrf_token %}
+            <input type="file" name="photo" accept="image/*" required id="id_photo">
+            <input type="text" name="title" required id="id_title">
+            <input type="text" name="user_name" required id="id_user_name">
+            <input type="number" name="price" required id="id_price">
+            <input type="submit" value="Post">
+        </form>
+    </div>
+</div>
+{% endblock %}

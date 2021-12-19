@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="center btmspace-80">
+            <h6 class="heading underline font-x2">Vivamus faucibus aliquam</h6>
+        </div>
+        <ul class="nospace group overview btmspace-80">
+            {% for category in categories %}
+            <li class="one_third">
+                <article>
+                    <div class="clear"><a href="{% url 'getcategory' category.id %}">
+                        <h6 class="heading">{{category.title}}</h6></a>
+
+                    </div>
+                    <p>{{category.content}}</p>
+                    <h3>Narx: {{category.price}}</h3>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+        <center style="font-size: 24px">
+            {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+            {% endif %}
+            <span>{{page_obj.number}}</span> {# the current page number #}
+
+            {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+            {% endif %}
+        </center>
+
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+    <section class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <div class="center btmspace-80">
+            <h6 class="heading underline font-x2">Integer sodales ultrices</h6>
+        </div>
+        <ul id="testimonials" class="nospace group btmspace-80">
+            <li class="one_half first">
+                <blockquote>Feugiat ligula augue tempor orci ullamcorper mattis erat pede at magna praesent non justo
+                    praesent vitae magna at metus pulvinar aliquam nulla dictum vestibulum lorem nam at elit vel erat
+                    eleifend.
+                </blockquote>
+                <figure class="clear"><img class="circle" src="images/demo/60x60.png" alt="">
+                    <figcaption>
+                        <h6 class="heading">A. Doe</h6>
+                        <em>CEO / Quis velit neque</em></figcaption>
+                </figure>
+            </li>
+            <li class="one_half">
+                <blockquote>Nec nisi id odio ultricies fermentum integer dolor nisi bibendum a faucibus nec ultricies at
+                    arcu aliquam nec eros quis est placerat vehicula in hac habitasse platea dictumst aliquam erat
+                    volutpat.
+                </blockquote>
+                <figure class="clear"><img class="circle" src="images/demo/60x60.png" alt="">
+                    <figcaption>
+                        <h6 class="heading">B. Doe</h6>
+                        <em>Director / Euismod tincidunt</em></figcaption>
+                </figure>
+            </li>
+        </ul>
+        <footer class="center"><a class="btn" href="#">Phasellus pede mauris</a></footer>
+        <!-- ################################################################################################ -->
+    </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+{% endblock %}

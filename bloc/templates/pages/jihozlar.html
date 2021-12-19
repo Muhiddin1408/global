@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="wrapper row2">
+    <section class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <div class="center btmspace-80">
+            <h6 class="heading underline font-x2">Eros cum sociis natoque</h6>
+        </div>
+
+
+<!--        <div class="nospace group">-->
+<!--            {% for jihoz in jihozlars %}-->
+<!--            <li class="one_quarter">-->
+<!--                <div class="fixwidth"><a class="imgover btmspace-30" href="{% url 'getjihoz' jihoz.id %}" style="width: 248px; height: 186px;"><img src="{{jihoz.photo.url}}"-->
+<!--                                                                                   alt=""></a>-->
+<!--                    <figcaption class="bold uppercase center">{{jihoz.title}}</figcaption>-->
+<!--                    <h3>Narxi: {{jihoz.price}}</h3>-->
+<!--                    <p>{{jihoz.description}}</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+        <div class="row">
+            {% for jihoz in jihozlars %}
+            <div class="col-md-4">
+
+                <article>
+                    <figure><a class="imgover btmspace-30" href="{% url 'getjihoz' jihoz.id %}" style="">
+                        {% if jihoz.photo%}
+                        <img src="{{ jihoz.photo.url }}" style="height: 350px;"></a></figure>
+                        {% else %}
+                        <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">
+                        {% endif %}</a></figure>
+                    <div class="excerpt">
+                        <h6 class="heading">{{jihoz.title}}</h6>
+
+                        <h3>Narxi: {{post.price}}</h3>
+                        <p>{{jihoz.description |slice:":20"}}</p>
+                    </div>
+                </article>
+
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <!-- ################################################################################################ -->
+
+        <center style="font-size: 24px">
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+    </section>
+</div>
+
+
+
+{% endblock %}

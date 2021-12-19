@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load materializecss %}
+
+{% block content %}
+<div class="site-wrapper" >
+    <!-- Cart Page Start -->
+    <main class="contact_area inner-page-sec-padding-bottom">
+        <div class="container">
+            <div class="row mt--60 ">
+                <div class="col-lg-5 col-md-5 col-12">
+                    <div class="contact_adress">
+                        <div class="ct_address">
+                            <h3 class="ct_title">Биз ҳақимизда</h3>
+                            <p>Иқро 2017 йилда Бухоро шаҳрида илк флиалини очди. Шундан кейин йиллар давомида катта
+                                тажриба орттирди ва CОВИД-19 даврида ҳам инсонларга илм улашиш мақсадида ижтимоий тармоқларда сотувларни амалга ошира бошлади. Ҳозирги кунда бизнинг Тошкент шаҳрида омборхонамиз ҳам мавжуд бўлиб бу бизга бутун республика бўйлаб жуда қисқа
+                                вақт ичида маҳсулотларни йетказиб бериш имкониятини бермоқда.</p>
+                        </div>
+                        <div class="address_wrapper">
+                            <div class="address">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <p><span>Манзил:</span> Бухоро шаҳри , Муҳаммад Иқбол кўчаси. Мўлжал: вилоят касалхонаси орқа тарафи
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <p><span>Електрон почта: </span> iqro@info.uz </p>
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <p><span>Телефон:</span> (998) 94 326 39 33 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-12 mt--30 mt-md--0">
+                    <div class="contact_form">
+                        <h3 class="ct_title">Хабар жўнатиш</h3>
+                        <form enctype="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Исмингизни киритинг<span class="required">*</span></label>
+                                        <input type="text" id="con_name" name="name" class="form-control"
+                                               required id="name_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Сизнинг электрон манзилингиз<span class="required">*</span></label>
+                                        <input type="email" id="con_email" name="email" class="form-control"
+                                               required id="email_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Сизнинг телфонингиз*</label>
+                                        <input type="text" id="con_phone" name="phone_number" class="form-control" id="phone_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Сизнинг хабарингиз</label>
+                                        <textarea id="con_message" name="message"
+                                                  class="form-control" id="message_id"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-btn">
+                                        <button type="submit" value="SendMessage" >Юбориш</button>
+                                    </div>
+                                    <div class="form__output"></div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-output">
+                            <p class="form-messege"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Cart Page End -->
+
+</div>
+
+{% endblock %}

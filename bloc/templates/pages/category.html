@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-md-8" style="padding-right: 72px;">
+            <h2 style="padding-top: 25px; text-align: center; color:#57bb7b;" >{{category.title}}</h2>
+            <h4><strong style="color:#57b57b;">Narxi: {{category.price}}</strong></h4>
+            <p>malumot:{{category.content}}</p>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
