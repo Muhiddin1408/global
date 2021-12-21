@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<!-- register form section starts  -->
+
+<section class="register">
+
+{#    <form action="" >#}
+{#        <h3>register now</h3>#}
+{#        <input type="text" name="" placeholder="enter your name" id="" class="box">#}
+{#        <input type="email" name="" placeholder="enter your email" id="" class="box">#}
+{#        <input type="password" name="" placeholder="enter your password" id="" class="box">#}
+{#        <input type="password" name="" placeholder="re-enter your password" id="" class="box">#}
+{#        <input type="submit" value="Ro'yhatdan o'tish" class="btn">#}
+{#        <p>already have an account?</p>#}
+{#        <a href="{% url 'login' %}" class="btn link">Kirish</a>#}
+{#    </form>#}
+
+    <form method="POST">
+        {% csrf_token %}
+       <p><label>Foydalanuvchi nomi</label> <br>{{form.username|add_class:"box"}}</p>
+
+        <p><label>Foydalanuvchi email</label> <br>{{form.email|add_class:"box"}}</p>
+
+        <p><label>Maxfiy kod kiriting</label><br> {{form.password1|add_class:"box"}}</p>
+
+        <p><label>Maxfiy kod takrorlang</label> <br>{{form.password2|add_class:"box"}}</p>
+
+       <input type="submit" value="Ro'yhatdan o'tish" class="btn">
+        <p>Ro'yhatdan o'tganmisiz?</p>
+        <a href="{% url 'login' %}" class="btn link">Kirish</a>
+    </form>
+
+
+</section>
+
+{% endblock content %}

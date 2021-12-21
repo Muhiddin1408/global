@@ -9,17 +9,27 @@
             <h6 class="heading underline font-x2">Vivamus faucibus aliquam</h6>
         </div>
         <ul class="nospace group overview btmspace-80">
-            {% for category in categories %}
-            <li class="one_third">
-                <article>
-                    <div class="clear"><a href="{% url 'getcategory' category.id %}">
-                        <h6 class="heading">{{category.title}}</h6></a>
+            {% for product in products %}
+            <div class="col-md-4">
 
+                <article>
+                    <figure>
+                        {% if product.photo%}
+                            <img src="{{ product.photo.url }}" style="height: 350px;"></a></figure>
+
+                        {% endif %}</figure>
+                    <div class="excerpt">
+                        <h6 class="heading">{{product.name}}</h6>
+                        <ul class="nospace meta">
+                            <li><i class="far fa-clock rgtspace-5" style="padding-left: 12px"></i>
+                                <time datetime="2045-04-06T08:15+00:00">{{post.created_at|date:"d.m.Y"}}</time>
+                            </li>
+                        </ul>
+                        <h3>Narxi: {{product.price}}</h3>
+                        <footer><a class="btn" href="{%url 'getpost' product.id %}">Read More</a></footer>
                     </div>
-                    <p>{{category.content}}</p>
-                    <h3>Narx: {{category.price}}</h3>
                 </article>
-            </li>
+            </div>
             {% endfor %}
         </ul>
         <center style="font-size: 24px">

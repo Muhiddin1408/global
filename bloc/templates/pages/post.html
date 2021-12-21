@@ -5,7 +5,6 @@
 <div class="container">
 
     <div class="row">
-
         <div class="col-md-4" style="padding-left: 72px;">
             {% if post.photo%}
             <img src="{{ post.photo.url }}" style="height: 350px;"></a></figure>
@@ -14,14 +13,17 @@
             {% endif %}
         </div>
         <div class="col-md-8" style="padding-right: 72px;">
-            <h2 style="padding-top: 25px; text-align: center; color:#57bb7b;" >{{post.title}}</h2>
+            <h2 style="padding-top: 25px; text-align: center; color:#57bb7b;" >{{post.name}}</h2>
             <h4><strong style="color:#57b57b;">Narxi: {{post.price}}</strong></h4>
             <ul class="nospace meta" style="text-align: right">
-                <li><i class="fas fa-user rgtspace-5"></i><b>{{post.user_name}}</b><i class="far fa-clock rgtspace-5"
-                                                                                      style="padding-left: 12px"></i>
+                <li><i class="far fa-clock rgtspace-5" style="padding-left: 12px"></i>
                     <time datetime="2045-04-06T08:15+00:00">{{post.created_at|date:"d.m.Y"}}</time>
                 </li>
             </ul>
+<!--            <form action="" method="post">-->
+<!--                <b>mahsulot soni </b><input type="number" value="1">-->
+<!--            </form>-->
+
         </div>
     </div>
 

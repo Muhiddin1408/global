@@ -10,26 +10,26 @@
         </div>
 
         <div class="row">
-            {% for post in posts %}
+            {% for product in products %}
             <div class="col-md-4">
 
                 <article>
                     <figure>
-                        {% if post.photo%}
-                        <img src="{{ post.photo.url }}" style="height: 350px;"></a></figure>
+                        {% if product.photo%}
+                        <img src="{{ product.photo.url }}" style="height: 350px;"></a></figure>
                         {% else %}
                         <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">
                         {% endif %}</figure>
                     <div class="excerpt">
-                        <h6 class="heading">{{post.title}}</h6>
+                        <h6 class="heading">{{product.name}}</h6>
                         <ul class="nospace meta">
-                            <li><i class="fas fa-user rgtspace-5"></i><b>{{post.user_name}}</b><i
+                            <i
                                     class="far fa-clock rgtspace-5" style="padding-left: 12px"></i>
-                                <time datetime="2045-04-06T08:15+00:00">{{post.created_at|date:"d.m.Y"}}</time>
+                                <time datetime="2045-04-06T08:15+00:00">{{product.created_at|date:"d.m.Y"}}</time>
                             </li>
                         </ul>
-                        <h3>Narxi: {{post.price}}</h3>
-                        <footer><a class="btn" href="{%url 'getpost' post.id %}">Read More</a></footer>
+                        <h3>Narxi: {{product.price}}</h3>
+                        <footer><a class="btn" href="{%url 'getpost' product.id %}">Read More</a></footer>
                     </div>
                 </article>
 
@@ -47,8 +47,7 @@
             {% endif %}
         </center>
         <div align="center">
-            <button class="btn-success" style="padding: 4px 16px; border-radius: 5px; "><a
-                    href="{% url 'create-post' %}" style="color:#fff; font-size: 24px">Create</a></button>
+
         </div>
     </section>
 </div>

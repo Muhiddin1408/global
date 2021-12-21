@@ -29,11 +29,10 @@ Licence URI: https://www.os-templates.com/template-terms
         <nav id="mainav" class="fl_right">
             <!-- ################################################################################################ -->
             <ul class="clear">
-                <li><a href="{% url 'index' %}">Category</a></li>
-                <li><a href="{% url 'jihozlar' %}">Jihozlar</a></li>
-                <li><a href="{% url 'post' %}">Post</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                </li>
+                <li><a href="{% url 'category' 'phones' %}">Phone</a></li>
+                <li><a href="{% url 'category' 'furniture' %}">Jihozlar</a></li>
+                <li><a href="{% url 'category' 'accessories' %}">Acsisuar</a></li>
+
             </ul>
             <!-- ################################################################################################ -->
         </nav>
@@ -52,7 +51,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <div class="wrapper row2">
     <section id="introblocks" class="hoc container clear">
         <!-- ################################################################################################ -->
-        <ul class="nospace group"><a href="{% url 'index' %}">
+        <ul class="nospace group"><a href="{% url 'category' 'phones' %}">
             <li class="one_third first">
                 <article><i class="fas fa-hand-peace"></i><br>
                     <h6 class="heading underline">Category</h6>
@@ -60,7 +59,7 @@ Licence URI: https://www.os-templates.com/template-terms
                         magna sed.</p>
                 </article>
             </li></a>
-            <a href="{% url 'jihozlar' %}">
+            <a href="{% url 'category' 'furniture' %}">
             <li class="one_third">
                 <article class="active"><i class="fas fa-microphone"></i><br>
                     <h6 class="heading underline">Jihozlar</h6>
@@ -68,7 +67,7 @@ Licence URI: https://www.os-templates.com/template-terms
                         imperdiet.</p>
                 </article>
             </li></a>
-            <a href="{% url 'post' %}">
+            <a href="{% url 'category' 'accessories' %}">
             <li class="one_third">
                 <article><i class="fas fa-moon"></i><br>
                     <h6 class="heading underline">Post</h6>
@@ -135,6 +134,7 @@ Licence URI: https://www.os-templates.com/template-terms
                 <li><a href="#">Lacus tortor varius erat</a></li>
             </ul>
         </div>
+        
         <div class="one_quarter">
             <h6 class="heading">Platea dictumst fusce</h6>
             <ul class="nospace clear latestimg">
@@ -171,3 +171,4 @@ Licence URI: https://www.os-templates.com/template-terms
 <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
 </body>
 </html>
+
