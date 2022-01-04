@@ -23,26 +23,26 @@
 <!--            {% endfor %}-->
 <!--        </div>-->
         <div class="row">
-            {% for jihoz in jihozlars %}
-            <div class="col-md-4">
+<!--            {% for jihoz in jihozlars %}-->
+<!--            <div class="col-md-4">-->
 
-                <article>
-                    <figure><a class="imgover btmspace-30" href="{% url 'getjihoz' jihoz.id %}" style="">
-                        {% if jihoz.photo%}
-                        <img src="{{ jihoz.photo.url }}" style="height: 350px;"></a></figure>
-                        {% else %}
-                        <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">
-                        {% endif %}</a></figure>
-                    <div class="excerpt">
-                        <h6 class="heading">{{jihoz.title}}</h6>
+<!--                <article>-->
+<!--                    <figure><a class="imgover btmspace-30" href="{% url 'getjihoz' jihoz.id %}" style="">-->
+<!--                        {% if jihoz.photo%}-->
+<!--                        <img src="{{ jihoz.photo.url }}" style="height: 350px;"></a></figure>-->
+<!--                        {% else %}-->
+<!--                        <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">-->
+<!--                        {% endif %}</a></figure>-->
+<!--                    <div class="excerpt">-->
+<!--                        <h6 class="heading">{{jihoz.title}}</h6>-->
 
-                        <h3>Narxi: {{post.price}}</h3>
-                        <p>{{jihoz.description |slice:":20"}}</p>
-                    </div>
-                </article>
+<!--                        <h3>Narxi: {{post.price}}</h3>-->
+<!--                        <p>{{jihoz.description |slice:":20"}}</p>-->
+<!--                    </div>-->
+<!--                </article>-->
 
-            </div>
-            {% endfor %}
+<!--            </div>-->
+<!--            {% endfor %}-->
         </div>
 
 
@@ -61,6 +61,8 @@
     </section>
 </div>
 
+<script>
 
+</script>
 
 {% endblock %}

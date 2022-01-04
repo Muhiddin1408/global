@@ -3,6 +3,44 @@
 
 
 {% block content %}
+<div class="wrapper bgded overlay" style="background-image:url('{% static 'images/demo/ban.jpg' %}');">
+    <div id="pageintro" class="hoc clear">
+    </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2">
+    <section id="introblocks" class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <ul class="nospace group"><a href="{% url 'category' 'phones' %}">
+            <li class="one_third first">
+                <article><i class="fas fa-hand-peace"></i><br>
+                    <h6 class="heading underline">Category</h6>
+                    <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu maecenas auctor viverra
+                        magna sed.</p>
+                </article>
+            </li></a>
+            <a href="{% url 'category' 'furniture' %}">
+            <li class="one_third">
+                <article class="active"><i class="fas fa-microphone"></i><br>
+                    <h6 class="heading underline">Jihozlar</h6>
+                    <p>In augue blandit ligula pharetra mattis vestibulum congue enim aenean felis augue pretium semper
+                        imperdiet.</p>
+                </article>
+            </li></a>
+            <a href="{% url 'category' 'accessories' %}">
+            <li class="one_third">
+                <article><i class="fas fa-moon"></i><br>
+                    <h6 class="heading underline">Post</h6>
+                    <p>Purus morbi ut risus nec orci bibendum commodo phasellus fringilla pede vitae tincidunt congue
+                        nibh lobortis.</p>
+                </article>
+            </li></a>
+        </ul>
+    </section>
+</div>
+
 <div class="wrapper row3">
     <section class="hoc container clear">
         <div class="center btmspace-80">
@@ -11,29 +49,55 @@
 
         <div class="row">
             {% for product in products %}
-            <div class="col-md-4">
+<!--            <div class="col-md-4">-->
 
-                <article>
-                    <figure>
-                        {% if product.photo%}
-                        <img src="{{ product.photo.url }}" style="height: 350px;"></a></figure>
-                        {% else %}
-                        <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">
-                        {% endif %}</figure>
-                    <div class="excerpt">
-                        <h6 class="heading">{{product.name}}</h6>
-                        <ul class="nospace meta">
-                            <i
-                                    class="far fa-clock rgtspace-5" style="padding-left: 12px"></i>
-                                <time datetime="2045-04-06T08:15+00:00">{{product.created_at|date:"d.m.Y"}}</time>
-                            </li>
-                        </ul>
-                        <h3>Narxi: {{product.price}}</h3>
-                        <footer><a class="btn" href="{%url 'getpost' product.id %}">Read More</a></footer>
-                    </div>
-                </article>
+<!--                <article>-->
+<!--                    <figure>-->
+<!--                        {% if product.photo%}-->
+<!--                        <img src="{{ product.photo.url }}" style="height: 350px;"></a></figure>-->
+<!--                        {% else %}-->
+<!--                        <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 350px;">-->
+<!--                        {% endif %}</figure>-->
+<!--                    <div class="excerpt">-->
+<!--                        <h6 class="heading">{{product.name}}</h6>-->
+<!--                        <ul class="nospace meta">-->
+<!--                            <i-->
+<!--                                    class="far fa-clock rgtspace-5" style="padding-left: 12px"></i>-->
+<!--                                <time datetime="2045-04-06T08:15+00:00">{{product.created_at|date:"d.m.Y"}}</time>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <h3>Narxi: {{product.price}}</h3>-->
+<!--                        <footer><a class="btn" href="{%url 'getpost' product.id %}">Read More</a></footer>-->
+<!--                    </div>-->
+<!--                </article>-->
 
+<!--            </div>-->
+
+            <div class="prod_box col-md-3" style="width:173px;
+height:auto;
+float:left;
+padding:10px 10px 10px 11px;">
+            <div class="center_prod_box" style="width:173px;height: auto;float:left; text-align:center;padding:0px; margin:0px; border:1px #F0F4F5 solid;">
+              <div class="product_title" style="
+color:#ff8a00;
+padding:5px 0 5px 0;
+font-weight:bold;
+"><a href="#" style="text-decoration:none;
+color:#ff8a00;
+padding:5px 0 5px 0;
+font-weight:bold;">{{product.name}}</a></div>
+              <div class="product_img" style="padding:5px 0 5px 0;"><a href="#">{% if product.photo%}<img src="{{ product.photo.url }}" alt="" border="0" />
+              {% else %}
+                        <img src="{% static 'images/demo/banner-bg.jpg' %}" alt="" border="0">
+                        {% endif %}</a></div>
+              <div class="prod_price" style="padding:5px 0 5px 0;">
+<!--                  <span class="reduce" style="color:#666666;text-decoration:line-through;">350$</span> -->
+                  <span class="price" style="color: #ff8a00;">Narxi: {{product.price}}</span></div>
+                <footer><a class="btn" href="{%url 'getpost' product.id %}">Read More</a></footer>
             </div>
+
+        </div>
+
             {% endfor %}
         </div>
         <center style="font-size: 24px">

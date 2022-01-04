@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <!--
 Template Name: Gleblu
@@ -16,6 +17,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'layout/styles/bootstrap.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'layout/styles/bootstrap.css.map' %}">-->
     <link rel="stylesheet" href="{% static 'layout/styles/owl.carousel.min.css' %}">
 </head>
 <body id="top">
@@ -32,6 +34,17 @@ Licence URI: https://www.os-templates.com/template-terms
                 <li><a href="{% url 'category' 'phones' %}">Phone</a></li>
                 <li><a href="{% url 'category' 'furniture' %}">Jihozlar</a></li>
                 <li><a href="{% url 'category' 'accessories' %}">Acsisuar</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="">Hi {{ user.username }}!</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+                {% else %}
+
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                <li><a href="{% url 'register' %}">register</a></li>
+                {% endif %}
+
+
 
             </ul>
             <!-- ################################################################################################ -->
@@ -41,43 +54,6 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('{% static 'images/demo/backgrounds/01.png' %}');">
-    <div id="pageintro" class="hoc clear">
-    </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row2">
-    <section id="introblocks" class="hoc container clear">
-        <!-- ################################################################################################ -->
-        <ul class="nospace group"><a href="{% url 'category' 'phones' %}">
-            <li class="one_third first">
-                <article><i class="fas fa-hand-peace"></i><br>
-                    <h6 class="heading underline">Category</h6>
-                    <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu maecenas auctor viverra
-                        magna sed.</p>
-                </article>
-            </li></a>
-            <a href="{% url 'category' 'furniture' %}">
-            <li class="one_third">
-                <article class="active"><i class="fas fa-microphone"></i><br>
-                    <h6 class="heading underline">Jihozlar</h6>
-                    <p>In augue blandit ligula pharetra mattis vestibulum congue enim aenean felis augue pretium semper
-                        imperdiet.</p>
-                </article>
-            </li></a>
-            <a href="{% url 'category' 'accessories' %}">
-            <li class="one_third">
-                <article><i class="fas fa-moon"></i><br>
-                    <h6 class="heading underline">Post</h6>
-                    <p>Purus morbi ut risus nec orci bibendum commodo phasellus fringilla pede vitae tincidunt congue
-                        nibh lobortis.</p>
-                </article>
-            </li></a>
-        </ul>
-    </section>
-</div>
 
 
 {% block content %}{% endblock %}
@@ -167,6 +143,17 @@ Licence URI: https://www.os-templates.com/template-terms
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+<script type="text/javascript">
+    var check = function() {
+      if (document.getElementById('password1').value ==
+          document.getElementById('password2').value) {
+          document.getElementById('message').style.color = 'green';
+          document.getElementById('message').innerHTML = 'matching';
+      } else {
+      		document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'not matching';
+      }
+    }</script>
 <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
 <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
 </body>

@@ -1,39 +1,61 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
-{% load widget_tweaks %}
+
 
 <!-- register form section starts  -->
 
 <section class="register">
-
-{#    <form action="" >#}
-{#        <h3>register now</h3>#}
-{#        <input type="text" name="" placeholder="enter your name" id="" class="box">#}
-{#        <input type="email" name="" placeholder="enter your email" id="" class="box">#}
-{#        <input type="password" name="" placeholder="enter your password" id="" class="box">#}
-{#        <input type="password" name="" placeholder="re-enter your password" id="" class="box">#}
-{#        <input type="submit" value="Ro'yhatdan o'tish" class="btn">#}
-{#        <p>already have an account?</p>#}
-{#        <a href="{% url 'login' %}" class="btn link">Kirish</a>#}
-{#    </form>#}
-
-    <form method="POST">
+    message: {{messages}}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+<section class="register">
+    <form action="" enctype="{% url 'register' %}" method="post">
+        <h3>register now</h3>
         {% csrf_token %}
-       <p><label>Foydalanuvchi nomi</label> <br>{{form.username|add_class:"box"}}</p>
-
-        <p><label>Foydalanuvchi email</label> <br>{{form.email|add_class:"box"}}</p>
-
-        <p><label>Maxfiy kod kiriting</label><br> {{form.password1|add_class:"box"}}</p>
-
-        <p><label>Maxfiy kod takrorlang</label> <br>{{form.password2|add_class:"box"}}</p>
-
-       <input type="submit" value="Ro'yhatdan o'tish" class="btn">
-        <p>Ro'yhatdan o'tganmisiz?</p>
+        <input type="text" name="username" placeholder="enter your name"  class="box">
+        <input type="email" name="email" placeholder="enter your email" class="box">
+        <input type="number" name="phone" placeholder="enter your phone" class="box">
+        <input type="password" name="password1" id="password1" placeholder="enter your password" onkeyup='check();' class="box">
+        <input type="password" name="password2" id="password2" placeholder="re-enter your password" onkeyup='check();' class="box">
+        <span id='message'></span>
+        <input type="submit" value="Ro'yhatdan o'tish">
+        <p style="padding-top: 2rem;
+  font-size: 1.5rem;
+  color: #666;
+  text-align: center;
+  padding-bottom: 1rem;">already have an account?</p>
         <a href="{% url 'login' %}" class="btn link">Kirish</a>
     </form>
+</section>
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--       <p><label>Foydalanuvchi nomi</label> <br>{{form.username}}</p>-->
+
+<!--        <p><label>Foydalanuvchi email</label> <br>{{form.email}}</p>-->
+
+<!--        <p><label>Foydalanuvchi email</label> <br>{{form.phone}}</p>-->
+
+<!--        <p><label>Maxfiy kod kiriting</label><br> {{form.password1}}</p>-->
+
+<!--        <p><label>Maxfiy kod takrorlang</label> <br>{{form.password2}}</p>-->
+
+<!--       <input type="submit" value="Ro'yhatdan o'tish" class="btn">-->
+<!--        <p>Ro'yhatdan o'tganmisiz?</p>-->
+<!--        <a href="{% url 'login' %}" class="btn link">Kirish</a>-->
+<!--    </form>-->
 
 
 </section>
 
 {% endblock content %}
+
+<script>
+
+
+</script>

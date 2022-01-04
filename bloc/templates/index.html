@@ -11,12 +11,10 @@
         <ul class="nospace group overview btmspace-80">
             {% for product in products %}
             <div class="col-md-4">
-
                 <article>
                     <figure>
                         {% if product.photo%}
                             <img src="{{ product.photo.url }}" style="height: 350px;"></a></figure>
-
                         {% endif %}</figure>
                     <div class="excerpt">
                         <h6 class="heading">{{product.name}}</h6>
@@ -31,6 +29,12 @@
                 </article>
             </div>
             {% endfor %}
+            <div class="center_prod_box">
+                ssss
+              <div class="product_title"><a href="#">Bosch XC</a></div>
+              <div class="product_img"><a href="#"><img src="images/p2.jpg" alt="" border="0" /></a></div>
+              <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+            </div>
         </ul>
         <center style="font-size: 24px">
             {%if page_obj.has_previous %} {# whether the previous page exists #}

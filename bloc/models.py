@@ -1,21 +1,22 @@
 import uuid
-from django.contrib.auth.models import User
+from account.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 # Create your models here.
 
 
 
-class SendMessage(models.Model):
-    title = models.CharField(max_length=100, default='')
-    name = models.CharField(max_length=64)
-    number = models.IntegerField(default=1)
-    email = models.EmailField(max_length=256, blank=True, null=True)
-    phone_number = models.CharField(max_length=12)
-    price = models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return self.name
+# class SendMessage(models.Model):
+#     title = models.CharField(max_length=100, default='')
+#     name = models.CharField(max_length=64)
+#     number = models.IntegerField(default=1)
+#     email = models.EmailField(max_length=256, blank=True, null=True)
+#     phone_number = models.CharField(max_length=12)
+#     price = models.IntegerField(default=0)
+#
+#
+#     def __str__(self):
+#         return self.name
 
 
 # class Category(models.Model):
@@ -62,7 +63,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
+    def __str__(self):
+        return self.name
 # class Buy(models.Model):
 #     title = models.ForeignKey(Jihozlar, on_delete=models.CASCADE)
 #     price = models.IntegerField()
@@ -78,29 +80,33 @@ class Order(models.Model):
         ('completed', 'COMPLETED'),
         ('cancelled', 'CANCELLED'),
     )
-    email = models.EmailField()
-    name = models.CharField(max_length=128)
-    phone = models.CharField(max_length=32)
-    status = models.CharField(choices=ORDER_STATUS_CHOICES, max_length=16)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    address = models.TextField(default='')
+    status = models.CharField(choices=ORDER_STATUS_CHOICES, max_length=16, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.email
+        return self.address
 
 
 class OrderDetail(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    price = models.FloatField()
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    quantity = models.FloatField()
 
     def __str__(self):
-        return self.order.name
+        return f'{self.id}'
 
 
 class Cart(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    quantity = models.IntegerField(default=1)
+    subtotel = models.FloatField(default=1)
 
+    def __str__(self):
+        return self.user.username
 
 

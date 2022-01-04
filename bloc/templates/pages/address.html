@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load materializecss %}
+
+{% block content %}
+<div style="background:#f4f4f4;">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+
+            <input type="text" name="address" required id="id_title">
+
+            <input type="submit" value="Post">
+        </form>
+    </div>
+</div>
+{% endblock %}

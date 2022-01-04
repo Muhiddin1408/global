@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<section class="login">
+
+<!--   <form  method="POST">-->
+        <h3 style="font-size: 2.5rem;
+  padding-bottom: 1rem;
+  color: #333;
+  text-transform: uppercase;">Kirish</h3>
+
+<!--{#        <input type="text" name="" placeholder="login kiriting" class="box">#}-->
+<!--{#        <input type="password" name="" placeholder="parol kiriting" class="box">#}-->
+<!--{#        <div class="remember">#}-->
+<!--{#            <input type="checkbox" name="" id="remember-me">#}-->
+<!--{#            <label for="remember-me"> yodda saqlash </label>#}-->
+<!--{#        </div>#}-->
+
+
+<!--       <input type="submit" value="kirish" class="btn">-->
+<!--    <p>don't have an account?</p>#}-->
+<!--       <a href="{% url 'register' %}" class="btn link">Ro'yhatdan o'tish</a>-->
+<!--    </form>-->
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="kirish" class="btn" style="align:center;
+  text-align: center;">
+         <p style="padding-top: 2rem;
+  font-size: 1.5rem;
+  color: #666;
+  text-align: center;
+  padding-bottom: 1rem;">Ro'yxatdan o'tmaganmisiz?</p>
+        <a href="{% url 'register' %}" class="btn link" style="
+  text-align: center;">Ro'yhatdan o'tish</a>
+    </form>
+
+</section>
+
+{% endblock content %}
