@@ -32,8 +32,6 @@ class OrderCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         carts = Cart.objects.all()
         form = OrderCreateForm(request.POST)
-        print(request.user.id)
-        print(request.user.id)
         if form.is_valid():
             order = Order.objects.create(
                 user=request.user,
@@ -98,6 +96,7 @@ class CartView(ListView):
 #     def get_context_data(self, *, object_list=None, **kwargs):
 #         context = super().get_context_data(**kwargs)
 #         return context
+
 
 class ProductView(ListView):
     model = Product
@@ -181,9 +180,7 @@ class ContactView(CreateView):
         return render(request, 'pages/contact.html', content)
 
     def post(self, request, *args, **kwargs):
-        print('njjb')
         form = ContactFrom(request.POST)
-        print(request.user)
         product = Product.objects.get(id=kwargs['id'])
         if form.is_valid():
             post = form.save(commit=False)
