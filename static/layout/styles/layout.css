@@ -323,7 +323,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF3F4A !important;}
 
 /* Rows */
 .row0{color:#474747; background-color:#F4F4F4;}
-.row1{color:#FFFFFF; background-color:#008DFF;}
+.row1{color:#FFFFFF; }
 .row2{color:#474747; background-color:#F4F4F4;}
 .row3{color:#474747; background-color:#FFFFFF;}
 .row4{color:#A5A6AA; background-color:#27282E;}

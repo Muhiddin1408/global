@@ -103,7 +103,7 @@ class ProductView(ListView):
     model = Product
 
     template_name = 'pages/hendrerit.html'
-    paginate_by = 9
+    paginate_by = 12
 
     def get_context_data(self, *, object_list=None, **kwargs):
         # print(self.request)
@@ -198,7 +198,7 @@ class ContactView(CreateView):
 class CategoryDetailView(ListView):
     model = Product
     template_name = 'pages/hendrerit.html'
-    paginate_by = 9
+    paginate_by = 12
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -59,6 +59,7 @@ class Product(models.Model):
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=1024, blank=True, null=True)
     price = models.FloatField()
+    image = models.ImageField(upload_to='product/', blank=True, null=True)
     type = models.CharField(choices=PRODUCT_TYPE, max_length=16)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

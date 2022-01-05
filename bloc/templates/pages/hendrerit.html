@@ -82,13 +82,15 @@ padding:10px 10px 10px 11px;">
 color:#ff8a00;
 padding:5px 0 5px 0;
 font-weight:bold;
-"><a href="#" style="text-decoration:none;
+"><a href="{%url 'getpost' product.id %}" style="text-decoration:none;
 color:#ff8a00;
 padding:5px 0 5px 0;
 font-weight:bold;">{{product.name}}</a></div>
-              <div class="product_img" style="padding:5px 0 5px 0;"><a href="#">{% if product.photo%}<img src="{{ product.photo.url }}" alt="" border="0" />
+              <div class="product_img" style="padding:5px 0 5px 0;"><a href="{%url 'getpost' product.id %}">
+                  {% if product.photo%}
+                  <img src="{{ product.photo.url }}" alt="" border="0" />
               {% else %}
-                        <img src="{% static 'images/demo/banner-bg.jpg' %}" alt="" border="0">
+                        <img src="{% static 'images/demo/imgl.gif' %}" alt="" border="0">
                         {% endif %}</a></div>
               <div class="prod_price" style="padding:5px 0 5px 0;">
 <!--                  <span class="reduce" style="color:#666666;text-decoration:line-through;">350$</span> -->
