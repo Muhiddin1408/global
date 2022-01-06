@@ -200,5 +200,5 @@ class CategoryDetailView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['products'] = Product.objects.filter(type=self.kwargs['type'])
-        print('products', Product.objects.filter(type=self.kwargs['type']))
+        # print('products', Product.objects.filter(type=self.kwargs['type']))
         return context
