@@ -6,11 +6,10 @@ import telegram
 bot = telegram.Bot(token='1998336097:AAHgwopnSqcXCYijJ1CbbYWrDMVKQHFjuz4')
 
 
-@receiver(pre_save, sender=Cart)
+@receiver(post_save, sender=Cart)
 def post_save_product(sender, instance, create, **kwargs):
     if create:
-        print(create.name)
-        print(Cart.objects.all())
-        print('ghhb')
+        Cart.objects.create(user=instance)
+        print('sdsd')
 
     bot.send_message(chat_id='990254417', text=f'product: {instance.name}')
