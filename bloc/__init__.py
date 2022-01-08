@@ -1,1 +1,1 @@
-default_app_config = 'django.contrib.bloc.apps.BlocConfig'
+default_app_config = 'bloc.apps.BlocConfig'

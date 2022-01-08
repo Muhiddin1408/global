@@ -7,10 +7,7 @@
 <section class="login">
 
 <!--   <form  method="POST">-->
-        <h3 style="font-size: 2.5rem;
-  padding-bottom: 1rem;
-  color: #333;
-  text-transform: uppercase;">Kirish</h3>
+
 
 <!--{#        <input type="text" name="" placeholder="login kiriting" class="box">#}-->
 <!--{#        <input type="password" name="" placeholder="parol kiriting" class="box">#}-->
@@ -25,19 +22,25 @@
 <!--       <a href="{% url 'register' %}" class="btn link">Ro'yhatdan o'tish</a>-->
 <!--    </form>-->
 
-    <form method="POST">
+    <form method="POST" style="place-items: center;display: grid;">
+        <h3 style="font-size: 2.5rem;
+  padding-bottom: 1rem;
+  color: #333;
+  text-transform: uppercase;text-align: center;">Kirish</h3>
         {% csrf_token %}
-        {{ form.as_p }}
+        <label >Username:</label>
+        <input type="text" name="username" placeholder="Username"  class="box">
+        <input type="password" name="password" id="password1" placeholder="password" onkeyup='check();' class="box">
 
-        <input type="submit" value="kirish" class="btn" style="align:center;
-  text-align: center;">
+<!--        {{ form.as_p }}-->
+
+        <input type="submit" value="Kirish" style="font-size: 1.5rem;background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff; border:0 "">
          <p style="padding-top: 2rem;
   font-size: 1.5rem;
   color: #666;
   text-align: center;
   padding-bottom: 1rem;">Ro'yxatdan o'tmaganmisiz?</p>
-        <a href="{% url 'register' %}" class="btn link" style="
-  text-align: center;">Ro'yhatdan o'tish</a>
+        <a href="{% url 'register' %}" style="font-size: 1.5rem;background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff; border:0 ">Ro'yhatdan o'tish</a>
     </form>
 
 </section>

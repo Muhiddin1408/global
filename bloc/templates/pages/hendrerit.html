@@ -16,7 +16,7 @@
         <ul class="nospace group"><a href="{% url 'category' 'phones' %}">
             <li class="one_third first">
                 <article><i class="fas fa-hand-peace"></i><br>
-                    <h6 class="heading underline">Category</h6>
+                    <h6 class="heading underline">Telefon</h6>
                     <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu maecenas auctor viverra
                         magna sed.</p>
                 </article>
@@ -32,7 +32,7 @@
             <a href="{% url 'category' 'accessories' %}">
             <li class="one_third">
                 <article><i class="fas fa-moon"></i><br>
-                    <h6 class="heading underline">Post</h6>
+                    <h6 class="heading underline">Aksisuar</h6>
                     <p>Purus morbi ut risus nec orci bibendum commodo phasellus fringilla pede vitae tincidunt congue
                         nibh lobortis.</p>
                 </article>
@@ -87,8 +87,8 @@ color:#ff8a00;
 padding:5px 0 5px 0;
 font-weight:bold;">{{product.name}}</a></div>
               <div class="product_img" style="padding:5px 0 5px 0;"><a href="{%url 'getpost' product.id %}">
-                  {% if product.photo%}
-                  <img src="{{ product.photo.url }}" alt="" border="0" />
+                  {% if product.image%}
+                  <img src="{{ product.image.url }}" alt="" border="0" />
               {% else %}
                         <img src="{% static 'images/demo/imgl.gif' %}" alt="" border="0">
                         {% endif %}</a></div>

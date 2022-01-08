@@ -5,11 +5,13 @@
 <div style="background:#f4f4f4;">
     <div class="container">
         <form method="post">
-            {% csrf_token %}
+            <div style="display: grid;place-items: center;">
+                {% csrf_token %}
+                <label> <h4>Manzilingizni kiriting</h4></label>
+                <input style="place-items: center" type="text" name="address" required id="id_title"><br>
 
-            <input type="text" name="address" required id="id_title">
-
-            <input type="submit" value="Post">
+                <input type="submit" style="background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff;border:0 " value="Send">
+            </div>
         </form>
     </div>
 </div>

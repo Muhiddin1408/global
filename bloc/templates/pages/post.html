@@ -6,8 +6,8 @@
 
     <div class="row">
         <div class="col-md-4" style="padding-left: 72px;">
-            {% if post.photo%}
-            <img src="{{ post.photo.url }}" style="height: 350px;"></a></figure>
+            {% if post.image%}
+            <img src="{{ post.image.url }}" style="height: 350px;"></a></figure>
             {% else %}
             <img src="{% static 'images/demo/100x100.png' %}" alt="" style="height: 300px;">
             {% endif %}
@@ -22,6 +22,8 @@
             </ul>
             {% if user.is_authenticated %}
             <a href="{% url 'contact' post.id %}" class="btn btn-success">basket</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-success">basket</a>
             {% endif %}
         </div>
     </div>

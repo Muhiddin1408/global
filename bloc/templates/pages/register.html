@@ -6,16 +6,16 @@
 <!-- register form section starts  -->
 
 <section class="register">
-    message: {{messages}}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+<!--    message: {{messages}}-->
+<!--    {% if messages %}-->
+<!--        <ul class="messages">-->
+<!--            {% for message in messages %}-->
+<!--            <li>{{ message }}</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    {% endif %}-->
 <section class="register">
-    <form action="" enctype="{% url 'register' %}" method="post">
+    <form action="" style="place-items: center;display: grid;" enctype="{% url 'register' %}" method="post">
         <h3>register now</h3>
         {% csrf_token %}
         <input type="text" name="username" placeholder="enter your name"  class="box">
@@ -23,14 +23,13 @@
         <input type="number" name="phone" placeholder="enter your phone" class="box">
         <input type="password" name="password1" id="password1" placeholder="enter your password" onkeyup='check();' class="box">
         <input type="password" name="password2" id="password2" placeholder="re-enter your password" onkeyup='check();' class="box">
-        <span id='message'></span>
-        <input type="submit" value="Ro'yhatdan o'tish">
+        <input type="submit" style="font-size: 1.5rem;background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff; border:0 " value="Ro'yhatdan o'tish">
         <p style="padding-top: 2rem;
   font-size: 1.5rem;
   color: #666;
   text-align: center;
-  padding-bottom: 1rem;">already have an account?</p>
-        <a href="{% url 'login' %}" class="btn link">Kirish</a>
+  padding-bottom: 1rem;">Ruyxatdan utganmisiz?</p>
+        <a href="{% url 'login' %}"  style="font-size: 1.5rem;background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff; border:0 ">Kirish</a>
     </form>
 </section>
 <!--    <form method="POST">-->
