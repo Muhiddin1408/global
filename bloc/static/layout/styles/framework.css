@@ -106,7 +106,7 @@ address, article, aside, figcaption, figure, footer, header, main, nav, section{
 
 .first{margin-left:0; clear:left;}
 
-.one_quarter{width:248px ; height: 186px}
+.one_quarter{width:248px ;}
 .one_third{width:30.52631%;}
 .one_half, .two_quarter{width:47.89473%;}
 .two_third{width:65.26315%;}

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bloc.apps.BlocConfig',
-
+    'adminlte3',
+    'adminlte3_theme',
     'materializecssform',
 ]
 
