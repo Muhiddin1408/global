@@ -9,11 +9,10 @@ bot = telegram.Bot(token='1998336097:AAHgwopnSqcXCYijJ1CbbYWrDMVKQHFjuz4')
 @receiver(post_save, sender=Order)
 def post_save_product(sender, instance, **kwargs):
     text = ''
-    buy=0
+    buy = 0
     for i in Cart.objects.all():
         text += f'{i.product.name} --{i.quantity} ta --{i.quantity * i.product.price} so\'m\n'
-        buy+=i.quantity * i.product.price
-    buy=str(buy)
-    print(text)
+        buy += i.quantity * i.product.price
+    buy = str(buy)
     bot.send_message('@onlin_bozor_m', text=
-    f'\n buyurtmachi: {instance.user}\nmanzil:{instance.address}\nNomer:{instance.user.phone} \n nomi:-- soni--narx:\n'+text+'umumiy narx:'+buy)
+    f'\n Buyurtmachi: {instance.user}\nManzil:{instance.address}\nNomer:{instance.user.phone} \n nomi:-- soni--narx:\n'+text+'umumiy narx:'+buy)
