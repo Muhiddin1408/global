@@ -79,11 +79,13 @@ class Order(models.Model):
         ('pending', 'PENDING'),
         ('delivering', 'DELIVERING'),
         ('completed', 'COMPLETED'),
-        ('cancelled', 'CANCELLED'),
+        ('not cancelled', 'NOT CANCELLED'),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     address = models.TextField(default='')
     status = models.CharField(choices=ORDER_STATUS_CHOICES, max_length=16, default='pending')
+    products = models.TextField(default='')
+    quantity = models.FloatField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

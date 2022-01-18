@@ -32,10 +32,19 @@ class OrderCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         carts = Cart.objects.all()
         form = OrderCreateForm(request.POST)
+        text = ''
+        buy = 0
         if form.is_valid():
+            for i in Cart.objects.all():
+                text += f'{i.product.name} --{i.quantity} ta --{i.quantity * i.product.price} so\'m\n' \
+                        f'\n'
+                buy += i.quantity * i.product.price
+            buy = str(buy)
             order = Order.objects.create(
                 user=request.user,
                 address=form.data['address'],
+                products=text,
+                quantity=buy,
             )
             for item in carts:
                 OrderDetail.objects.create(
