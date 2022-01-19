@@ -15,4 +15,4 @@ def post_save_product(sender, instance, **kwargs):
         buy += i.quantity * i.product.price
     buy = str(buy)
     bot.send_message('@onlin_bozor_m', text=
-    f'\nBuyurtmachi: {instance.user}\nManzil:{instance.address}\nNomer:{instance.user.phone} \n nomi:-- soni--narx:\n'+text+'umumiy narx:'+buy)
+    f'\nBuyurtmachi: {instance.user}\nManzil:{instance.address}\nNomer:{instance.user.phone} \nStatusi:{instance.status}\n nomi:-- soni--narx:\n'+text+'umumiy narx:'+buy)

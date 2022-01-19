@@ -36,8 +36,7 @@ class OrderCreateView(CreateView):
         buy = 0
         if form.is_valid():
             for i in Cart.objects.all():
-                text += f'{i.product.name} --{i.quantity} ta --{i.quantity * i.product.price} so\'m\n' \
-                        f'\n'
+                text += f'{i.product.name} --{i.quantity} ta --{i.quantity * i.product.price}so\'m\n ? '
                 buy += i.quantity * i.product.price
             buy = str(buy)
             order = Order.objects.create(

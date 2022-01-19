@@ -62,12 +62,12 @@
                                 {% for i in pending%}
                                 <a href="{%url 'orderuser' i.id%}">
                                 <div class="d-flex flex-row comment-row m-t-0">
-                                    <div class="p-2"><img src="{% static 'dashboard/assets/images/users/1.jpg'%}" alt="user" width="50" class="rounded-circle"></div>
+<!--                                    <div class="p-2"><img src="{% static 'dashboard/assets/images/users/1.jpg'%}" alt="user" width="50" class="rounded-circle"></div>-->
                                     <div class="comment-text w-100">
                                         <h6 class="font-medium">{{i.user}}</h6>
                                         <span class="m-b-15 d-block">{{i.address}}</span>
 <!--                                        <span class="m-b-15 d-block">{{i.user.phone}}</span>-->
-<!--                                        <span class="m-b-15 d-block">{{i.products}}</span>-->
+                                        <span class="m-b-15 d-block">{{i.products}}</span>
 <!--                                        <span class="m-b-15 d-block">{{i.quantity}}  so'm</span>-->
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">{{i.created_at}}</span>
@@ -103,12 +103,12 @@
                                 {% for i in delivering%}
                                     <tr>
                                         <td>{{i.user}}</td>
-                                        <td class="text-success">{{i.id}}</td>
+                                        <td class="text-success">{{i.address}}</td>
                                         <td>
-                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Update">
+                                            <a href="{%url 'completed' i.id %}" data-toggle="tooltip" data-placement="top" title="Completed">
                                                 <i class="mdi mdi-check"></i>
                                             </a>
-                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <a href="{% url 'notcompleted' i.id %}" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 </i><i class="mdi mdi-close"></i>
                                             </a>
                                         </td>

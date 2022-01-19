@@ -4,10 +4,24 @@
 <div id="main-wrapper">
     <div class="page-wrapper">
         <div class="container-fluid">
-{{post.user}}
+<h2 style="text-align: center;">{{post.user}}</h2>
 <br>
 {{post.address}}
+
+            <span class="m-b-15 d-block">{{post.products}}</span>
+            {% for i in post.products%}
+            <span>
+            {% if i == " " %}
+                <br>
+            {%endif%}
+                {{i}}</span>
+            {% endfor%}
+            <h4 class="m-b-15 d-block">Umumiy narxi: {{post.quantity}} so'm</h4>
+
+            <span class="text-muted float-right">{{post.created_at}}</span>
+            <a href="{% url 'delivering' post.id %}"><button>Dastavka</button></a>
         </div>
+
     </div>
 </div>
 {% endblock content %}
