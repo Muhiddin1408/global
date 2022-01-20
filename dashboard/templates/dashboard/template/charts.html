@@ -225,10 +225,10 @@ $(document).ready(function(){
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [ {% for i in qs %}'{{i.name}}',{% endfor %}],
+            labels: [ {% for i in qs %}'{{i.product}}',{% endfor %}],
             datasets: [{
                 label: '# of Votes',
-                data: [{% for i in qs %}{{i.money}},{% endfor %}],
+                data: [{% for i in qs %}{{i.quantity}},{% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -256,7 +256,6 @@ $(document).ready(function(){
             }
         }
     });
-
 });
 </script>
 {% endblock scripts%}

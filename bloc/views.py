@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic import ListView, CreateView
-from .models import Product, User, Order, OrderDetail, Cart
+from .models import Product, User, Order, OrderDetail, Cart, Statistics
 from .forms import UserRegisterForm, ContactFrom, OrderCreateForm
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -31,6 +31,7 @@ class OrderCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         carts = Cart.objects.all()
+        statistic = Statistics.objects.all()
         form = OrderCreateForm(request.POST)
         text = ''
         buy = 0
@@ -51,6 +52,17 @@ class OrderCreateView(CreateView):
                     quantity=item.quantity,
                     order=order
                 )
+            for i in Cart.objects.all():
+                if Statistics.objects.filter(product=i.product):
+                    statistic = Statistics.objects.filter(product=i.product).first()
+                    statistic.quantity += i.quantity
+                    statistic.save()
+                else:
+                    Statistics.objects.create(
+                        product=i.product,
+                        quantity=i.quantity
+                    )
+
             Cart.objects.filter(user=request.user).delete()
             return HttpResponseRedirect(reverse_lazy('index'))
         return render(request, 'pages/address.html', {'form': form})
@@ -66,9 +78,7 @@ class Register(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = UserRegisterForm(request.POST)
-        print(request.POST['phone'])
         if form.is_valid(request.POST, raise_exception=True):
-            print('qwe')
             post = form.save()
             post.save()
             return HttpResponseRedirect(reverse_lazy('register'))

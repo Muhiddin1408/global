@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, CreateView
 from .models import Club
-from bloc.models import Order, User
+from bloc.models import Order, User, Statistics
 # Create your views here.
 
 
@@ -57,7 +57,7 @@ class ClubChartView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['qs'] = Club.objects.all()
+        context['qs'] = Statistics.objects.all()
         return context
 
 
