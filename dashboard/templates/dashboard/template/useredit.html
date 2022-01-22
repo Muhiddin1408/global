@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html'%}
+{%load static%}
+
+{% block content%}
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Username:</label><br>
+    <input type="text" name="username" value="{{user.username}}"><br>
+<!--    <label>Email:</label><br>-->
+<!--    <input type="email" name="email" value="{{user.email}}"><br>-->
+    <label>Phone:</label><br>
+    <input type="" name="phone" value="{{user.phone}}"><br>
+    <label>Status:</label><br>
+    <select name="status">
+        <option value="">{{user.status}}</option>
+        {% if user.status == 'false'%}
+        <option value="">true</option>
+        {% else %}
+        <option value="">false</option>
+        {% endif %}
+    </select><br><br>
+
+    <input type="submit" value="PUT">
+</form>
+            </div>
+        </div>
+{% endblock content%}

@@ -45,31 +45,23 @@
                             <table class="table">
                                   <thead>
                                     <tr>
+                                      <th scope="col">Id</th>
+                                      <th scope="col">Username</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">phone</th>
                                       <th scope="col">#</th>
-                                      <th scope="col">First</th>
-                                      <th scope="col">Last</th>
-                                      <th scope="col">Handle</th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                  {%for i in user%}
                                     <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
-                                      <td>Otto</td>
-                                      <td>@mdo</td>
+                                      <th scope="row">{{i.id}}</th>
+                                      <td>{{i.username}}</td>
+                                      <td>{{i.email}}</td>
+                                      <td>{{i.phone}}</td>
+                                      <td><a href="{%url 'useredit' i.id %}"><button style="border-radius:5%">Edit</button></a></td>
                                     </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                      <td>Thornton</td>
-                                      <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry</td>
-                                      <td>the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
+                                  {% endfor %}
                                   </tbody>
                             </table>
                         </div>

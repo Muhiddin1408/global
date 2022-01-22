@@ -37,7 +37,6 @@ class UserRegisterForm(UserCreationForm):
             return True
 
     def save(self, commit=True):
-        print('dsaasd', self.data['password1'])
         username = self.data['username']
         password = self.data['password1']
         phone = self.data['phone']
