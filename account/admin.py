@@ -5,7 +5,7 @@ from account.models import User
 
 
 UserAdmin.fieldsets += (
-    (None, {'fields': ('phone', )}),
+    (None, {'fields': ('phone', 'status')}),
 )
 
 admin.site.register(User, UserAdmin)

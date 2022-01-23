@@ -14,7 +14,8 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Tables</h4>
+                        <h4 class="page-title">Product</h4>
+
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -41,25 +42,64 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title m-b-0">Static Table</h5>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">ALL</span></a> </li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#phones" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab1</span></a> </li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#furniture" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab2</span></a> </li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#accessories" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab3</span></a> </li>
+                                </ul>
                             </div>
                             <table class="table">
                                   <thead>
                                     <tr>
                                       <th scope="col">Id</th>
-                                      <th scope="col">Username</th>
-                                      <th scope="col">Email</th>
-                                      <th scope="col">phone</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Price</th>
+                                      <th scope="col">Type</th>
                                       <th scope="col">#</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                  {%for i in user%}
+                                  {%for i in product%}
                                     <tr>
                                       <th scope="row">{{i.id}}</th>
-                                      <td>{{i.username}}</td>
-                                      <td>{{i.email}}</td>
-                                      <td>{{i.phone}}</td>
-                                      <td><a href="{%url 'useredit' i.id %}"><button style="border-radius:5px;">Edit</button></a></td>
+                                      <td>{{i.name}}</td>
+                                      <td>{{i.price}}</td>
+                                      <td>{{i.type}}</td>
+                                      <td><a href="{%url 'productedit' i.id %}"><button style="border-radius:5px;">Edit</button></a></td>
+                                    </tr>
+                                  {% endfor %}
+                                  </tbody>
+                            </<tbody class="tab-pane active" id="home" role="tabpanel">
+                                  {%for i in product%}
+                                    <tr>
+                                      <th scope="row">{{i.id}}</th>
+                                      <td>{{i.name}}</td>
+                                      <td>{{i.price}}</td>
+                                      <td>{{i.type}}</td>
+                                      <td><a href="{%url 'productedit' i.id %}"><button style="border-radius:5px;">Edit</button></a></td>
+                                    </tr>
+                                  {% endfor %}
+                                  </tbody>
+                            </<tbody class="tab-pane active" id="home" role="tabpanel">
+                                  {%for i in product%}
+                                    <tr>
+                                      <th scope="row">{{i.id}}</th>
+                                      <td>{{i.name}}</td>
+                                      <td>{{i.price}}</td>
+                                      <td>{{i.type}}</td>
+                                      <td><a href="{%url 'productedit' i.id %}"><button style="border-radius:5px;">Edit</button></a></td>
+                                    </tr>
+                                  {% endfor %}
+                                  </tbody>
+                            </<tbody class="tab-pane active" id="home" role="tabpanel">
+                                  {%for i in product%}
+                                    <tr>
+                                      <th scope="row">{{i.id}}</th>
+                                      <td>{{i.name}}</td>
+                                      <td>{{i.price}}</td>
+                                      <td>{{i.type}}</td>
+                                      <td><a href="{%url 'productedit' i.id %}"><button style="border-radius:5px;">Edit</button></a></td>
                                     </tr>
                                   {% endfor %}
                                   </tbody>

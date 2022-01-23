@@ -1,20 +1,25 @@
 import datetime
-
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, CreateView, FormView
 from .models import Club
-from .forms import UserUpdateForm
-from bloc.models import Order, User, Statistics
+from .forms import UserUpdateForm, ProductUpdateForm
+from bloc.models import Order, User, Statistics, Product
 # Create your views here.
 
 
 class DashboardView(TemplateView):
     template_name = 'dashboard/index.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+
         context = super().get_context_data(**kwargs)
         context['pending'] = 0
         context['delivering'] = 0
@@ -34,20 +39,24 @@ class DashboardView(TemplateView):
         context['new_user'] = User.objects.filter(date_joined__gte=time).count()
         context['user'] = User.objects.all().count()
 
-        return context
+        return render(request, 'dashboard/index.html', context)
 
 
 class WidgetsView(TemplateView):
     template_name = 'dashboard/template/widgets.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
         context = super().get_context_data(**kwargs)
         context['pending'] = Order.objects.filter(status='pending')
         context['delivering'] = Order.objects.filter(status='delivering')
-        return context
+        return render(request, 'dashboard/template/widgets.html', context)
 
 
 def orderUserView(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse_lazy('login'))
     order = Order.objects.get(id=id)
     res = {
         "post": order
@@ -58,13 +67,17 @@ def orderUserView(request, id):
 class ClubChartView(TemplateView):
     template_name = 'dashboard/template/charts.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
         context = super().get_context_data(**kwargs)
         context['qs'] = Statistics.objects.all()
-        return context
+        return render(request, 'dashboard/template/charts.html', context)
 
 
 def deliveringView(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse_lazy('login'))
     obj = Order.objects.filter(id=id).first()
     obj.status = 'delivering'
     obj.save()
@@ -94,97 +107,50 @@ class TablesView(TemplateView):
         return context
 
 
-class UserEditForm(FormView):
-    model = User
-    template_name = 'dashboard/template/useredit.html'
-    form_class = UserUpdateForm
+class UserEditForm(UpdateView):
     # queryset = User.objects.get()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = User.objects.get(id=self.kwargs['id'])
-        return context
-    # def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        form = UserUpdateForm
+        user = User.objects.get(id=self.kwargs['id'])
+        content = {'form': form,
+                   'user': user}
+        return render(request, 'dashboard/template/useredit.html', content)
 
     def post(self, request, *args, **kwargs):
         form = UserUpdateForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            post.save()
-            return HttpResponseRedirect(reverse_lazy('tables'))
-
-        return render(request, 'dashboard/template/tables.html', {'form': form})
-
-
-
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.save()
-    #     return HttpResponse(self.template_name, self.get_context_data())
-    #     form.instance.user = self.request.user
-    #     form.save()
-    #     return super(UserEditForm, self).form_valid(form)
+        user = User.objects.get(id=self.kwargs['id'])
+        user.username = form.data['username']
+        user.phone = form.data['phone']
+        user.status = form.data['status']
+        user.save()
+        return HttpResponseRedirect(reverse_lazy('tables'))
 
 
-def EditView(request, id):
-        if not request.user.is_authenticated:
-            return redirect("/login")
-        if request.method == "GET":
-            context = super().get_context_data()
-            print('dsa')
-            context['user'] = User.objects.get(id=request.POST.get("id")).first()
-            return context
+class ProductView(TemplateView):
+    template_name = 'dashboard/template/product.html'
 
-        if request.method == "POST":
-            price = User.objects.filter(id=request.POST.get("id")).first()
-            my_file = request.POST.get("username")
-            post = request.POST.get("status")
-            print(post)
-            form = UserUpdateForm
-            print(my_file)
-            if form.is_valid():
-                price.username = request.POST.get("username")
-                price.phone = request.POST.get("phone")
-                price.status = request.POST.get("status")
-                price.save()
-            # if not price:
-            #     return JsonResponse({"price": "Not found"})
-
-                return HttpResponseRedirect(reverse_lazy("tables"))
-        price = User.objects.filter(id=request.GET.get("id")).first()
-        return render(request, template_name="dashboard/template/useredit.html", context={"price": price})
-    #
-    # def post(self, request, *args, **kwargs):
-    #     form = UserUpdateForm(request.POST)
-    #     if form.is_valid():
-    #         post = form.save()
-    #         post.save()
-    #         return HttpResponseRedirect(reverse_lazy('tebles'))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.all()
+        return context
 
 
+class ProductEditView(UpdateView):
 
+    def get(self, request, *args, **kwargs):
+        form = ProductEditView
 
+        user = Product.objects.get(id=self.kwargs['id'])
+        content = {'form': form,
+                   'user': user}
+        return render(request, 'dashboard/template/productedit.html', content)
 
-
-
-
-
-
-
-# class UserEdit(UpdateView):
-    # def get(self):
-    # if request.method == 'POST':
-    #     form = UserUpdateView(request.POST, instance=request.user)
-    #
-    #     if form.is_valid:
-    #         form.save()
-    #         return HttpResponseRedirect(reverse_lazy('tables'))
-    # else:
-    #     form = UserUpdateView(instance=request.user)
-    #
-    #     args = {
-    #         'form': form,
-    #
-    #     }
-    #     return render(request, '.html', args)
-
+    def post(self, request, *args, **kwargs):
+        form = ProductUpdateForm(request.POST)
+        user = Product.objects.get(id=self.kwargs['id'])
+        user.name = form.data['name']
+        user.price = form.data['price']
+        user.description = form.data['description']
+        user.save()
+        return HttpResponseRedirect(reverse_lazy('products'))
