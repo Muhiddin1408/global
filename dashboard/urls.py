@@ -15,5 +15,6 @@ urlpatterns = [
     path('user/<int:id>/', views.UserEditForm.as_view(), name='useredit'),
     path('products/', views.ProductView.as_view(), name='products'),
     path('products/<int:id>/', views.ProductEditView.as_view(), name='productedit'),
+    path('products/add/', views.AddProductView.as_view(), name='addproduct'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

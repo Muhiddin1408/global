@@ -1,4 +1,6 @@
 import datetime
+from select import select
+
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
@@ -7,8 +9,8 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, CreateView, FormView
-from .models import Club
-from .forms import UserUpdateForm, ProductUpdateForm
+
+from .forms import UserUpdateForm, ProductUpdateForm, AddProductForm
 from bloc.models import Order, User, Statistics, Product
 # Create your views here.
 
@@ -19,6 +21,9 @@ class DashboardView(TemplateView):
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
 
         context = super().get_context_data(**kwargs)
         context['pending'] = 0
@@ -39,6 +44,10 @@ class DashboardView(TemplateView):
         context['new_user'] = User.objects.filter(date_joined__gte=time).count()
         context['user'] = User.objects.all().count()
 
+        context['userdate'] = User.objects.raw('''select 1 id, date(u.date_joined), count(u)
+from account_user as u
+group by date(u.date_joined)''')
+
         return render(request, 'dashboard/index.html', context)
 
 
@@ -48,6 +57,9 @@ class WidgetsView(TemplateView):
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
         context = super().get_context_data(**kwargs)
         context['pending'] = Order.objects.filter(status='pending')
         context['delivering'] = Order.objects.filter(status='delivering')
@@ -57,6 +69,9 @@ class WidgetsView(TemplateView):
 def orderUserView(request, id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse_lazy('login'))
+
+    elif request.user.is_authenticated and request.user.status == 'True':
+        return HttpResponseRedirect(reverse_lazy('index'))
     order = Order.objects.get(id=id)
     res = {
         "post": order
@@ -70,6 +85,9 @@ class ClubChartView(TemplateView):
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
         context = super().get_context_data(**kwargs)
         context['qs'] = Statistics.objects.all()
         return render(request, 'dashboard/template/charts.html', context)
@@ -78,6 +96,9 @@ class ClubChartView(TemplateView):
 def deliveringView(request, id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse_lazy('login'))
+
+    elif request.user.is_authenticated and request.user.status == 'True':
+        return HttpResponseRedirect(reverse_lazy('index'))
     obj = Order.objects.filter(id=id).first()
     obj.status = 'delivering'
     obj.save()
@@ -85,6 +106,11 @@ def deliveringView(request, id):
 
 
 def completedView(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse_lazy('login'))
+
+    elif request.user.is_authenticated and request.user.status == 'True':
+        return HttpResponseRedirect(reverse_lazy('index'))
     obj = Order.objects.filter(id=id).first()
     obj.status = 'completed'
     obj.save()
@@ -92,6 +118,11 @@ def completedView(request, id):
 
 
 def notcompletedView(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse_lazy('login'))
+
+    elif request.user.is_authenticated and request.user.status == 'True':
+        return HttpResponseRedirect(reverse_lazy('index'))
     obj = Order.objects.filter(id=id).first()
     obj.status = 'notcompleted'
     obj.save()
@@ -99,18 +130,27 @@ def notcompletedView(request, id):
 
 
 class TablesView(TemplateView):
-    template_name = 'dashboard/template/tables.html'
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
 
-    def get_context_data(self, **kwargs):
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
+
         context = super().get_context_data(**kwargs)
         context['user'] = User.objects.all()
-        return context
+        return render(request, 'dashboard/template/tables.html', context)
 
 
 class UserEditForm(UpdateView):
     # queryset = User.objects.get()
 
     def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
         form = UserUpdateForm
         user = User.objects.get(id=self.kwargs['id'])
         content = {'form': form,
@@ -128,17 +168,26 @@ class UserEditForm(UpdateView):
 
 
 class ProductView(TemplateView):
-    template_name = 'dashboard/template/product.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
         context = super().get_context_data(**kwargs)
         context['product'] = Product.objects.all()
-        return context
+        return render(request, 'dashboard/template/product.html', context)
 
 
 class ProductEditView(UpdateView):
 
     def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
         form = ProductEditView
 
         user = Product.objects.get(id=self.kwargs['id'])
@@ -154,3 +203,31 @@ class ProductEditView(UpdateView):
         user.description = form.data['description']
         user.save()
         return HttpResponseRedirect(reverse_lazy('products'))
+
+
+class AddProductView(CreateView):
+    queryset = Product.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+
+        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+            return HttpResponseRedirect(reverse_lazy('index'))
+        form = AddProductForm
+        context = {'form': form}
+        return render(request, 'dashboard/template/addProduct.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = AddProductForm(request.POST)
+        print('ssd')
+        if form.is_valid():
+            print('ssd')
+            post = form.save()
+            post.save()
+            return HttpResponseRedirect(reverse_lazy('products'))
+        return render(request, 'dashboard/template/addProduct.html', {'form': form})
+
+
+
+

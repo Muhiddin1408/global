@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'bloc.apps.BlocConfig',
     'dashboard',
     'materializecssform',
+    # 'django_rbac_permissions',
+    # 'django_json_widget',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'rbac_permissions.middleware.CheckAdminRoleAuthorizationMiddleware'
 ]
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -84,14 +87,14 @@ AUTH_USER_MODEL = 'account.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'global',
-        # 'USER' : 'Muhidin',
-        # 'PASSWORD' : 'Muhiddin14',
-        # 'HOST' : '127.0.0.1',
-        # 'PORT' : '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'global',
+        'USER': 'postgres',
+        'PASSWORD': 'Muhiddin14',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -120,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 

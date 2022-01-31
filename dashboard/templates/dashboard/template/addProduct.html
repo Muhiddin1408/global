@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html'%}
+{%load static%}
+
+{% block content%}
+
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>Name:</label><br>
+                    <input type="text" name="name" value=""><br>
+                    <label>Prise:</label><br>
+                    <input type="number" name="price" value=""><br>
+                    <label>Description:</label><br>
+                    <input type="text" name="description" value=""><br>
+<!--                    <input type="image" name="image">-->
+                    <select name="type">
+                        <option>furniture</option>
+                        <option>phones</option>
+                        <option>accessories</option>
+                    </select>
+                    <br><br>
+                    <input type="submit" value="ADD">
+                </form>
+            </div>
+        </div>
+{% endblock content%}
