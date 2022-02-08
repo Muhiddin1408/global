@@ -22,7 +22,7 @@ class DashboardView(TemplateView):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
 
-        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+        elif self.request.user.status == 'false':
             return HttpResponseRedirect(reverse_lazy('index'))
 
         context = super().get_context_data(**kwargs)
@@ -58,7 +58,7 @@ class WidgetsView(TemplateView):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
 
-        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+        elif self.request.user.is_authenticated and self.request.user.status == 'true':
             return HttpResponseRedirect(reverse_lazy('index'))
         context = super().get_context_data(**kwargs)
         context['pending'] = Order.objects.filter(status='pending')
@@ -70,7 +70,7 @@ def orderUserView(request, id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse_lazy('login'))
 
-    elif request.user.is_authenticated and request.user.status == 'True':
+    elif request.user.is_authenticated and request.user.status == 'true':
         return HttpResponseRedirect(reverse_lazy('index'))
     order = Order.objects.get(id=id)
     res = {
@@ -79,14 +79,14 @@ def orderUserView(request, id):
     return render(request, 'dashboard/template/orderuser.html', res)
 
 
-class ClubChartView(TemplateView):
+class ClubChartView(TemplateView, CreateView):
     template_name = 'dashboard/template/charts.html'
 
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
 
-        elif self.request.user.is_authenticated and self.request.user.status == 'True':
+        elif self.request.user.status == 'true':
             return HttpResponseRedirect(reverse_lazy('index'))
         context = super().get_context_data(**kwargs)
         context['qs'] = Statistics.objects.all()
