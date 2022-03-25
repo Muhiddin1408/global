@@ -31,7 +31,7 @@ class OrderCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         carts = Cart.objects.all()
-        statistic = Statistics.objects.all()
+
         form = OrderCreateForm(request.POST)
         text = ''
         buy = 0
