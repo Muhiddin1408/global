@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bloc.apps.BlocConfig',
     'dashboard',
-    'materializecssform',
+    # 'materializecssform',
     # 'django_rbac_permissions',
     # 'django_json_widget',
 ]
@@ -90,7 +90,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'global',
+        'NAME': 'globall',
         'USER': 'postgres',
         'PASSWORD': 'Muhiddin14',
         'HOST': '127.0.0.1',
@@ -136,11 +136,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    'static/'
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     'static/'
+# ]
 
 # Media fikes
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

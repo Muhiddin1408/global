@@ -5,6 +5,10 @@ from django.db import models
 # Create your models here.
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=125)
+
+
 class Product(models.Model):
     PRODUCT_TYPE = (
         ('furniture', 'FURNITURE'),
@@ -15,7 +19,7 @@ class Product(models.Model):
     description = models.CharField(max_length=1024, blank=True, null=True)
     price = models.IntegerField()
     image = models.ImageField(upload_to='product/', blank=True, null=True)
-    type = models.CharField(choices=PRODUCT_TYPE, max_length=16)
+    type = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
