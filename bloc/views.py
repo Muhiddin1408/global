@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic import ListView, CreateView
-from .models import Product, User, Order, OrderDetail, Cart, Statistics
+from .models import Product, User, Order, OrderDetail, Cart, Statistics, Category
 from .forms import UserRegisterForm, ContactFrom, OrderCreateForm
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -220,3 +220,13 @@ class CategoryDetailView(ListView):
         context['products'] = Product.objects.filter(type=self.kwargs['type'])
         # print('products', Product.objects.filter(type=self.kwargs['type']))
         return context
+
+################################### NEW
+
+
+# class Home(ListView):
+#     model = Category.objects.all()
+#     template_name = 'index.html'
+
+def home(request):
+    return render(request, 'index.html')

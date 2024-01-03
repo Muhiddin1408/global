@@ -10,11 +10,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    PRODUCT_TYPE = (
-        ('furniture', 'FURNITURE'),
-        ('phones', 'PHONES'),
-        ('accessories', 'ACCESSORIES')
-    )
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=1024, blank=True, null=True)
     price = models.IntegerField()
@@ -25,6 +20,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DescriptionItem(models.Model):
+    text = models.TextField()
+    parent = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
 class Order(models.Model):

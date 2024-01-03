@@ -11,6 +11,7 @@ urlpatterns = [
     path('product/<int:id>', views.get_post, name='getpost'),
     path('category/get/<int:id>', views.get_category, name='getcategory'),
     path('contact/<int:id>/', views.ContactView.as_view(), name='contact'),
+    path('home/', views.home, name='home'),
 ]
 
 

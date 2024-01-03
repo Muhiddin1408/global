@@ -3,8 +3,8 @@
 
 
 {% block content %}
-<div class="wrapper bgded overlay" style="background-image:url('{% static 'images/demo/ban.jpg' %}');">
-    <div id="pageintro" class="hoc clear">
+<div class="wrapper bgded overlay">
+    <div id="pageintro" class="">
     </div>
 </div>
 <!-- ################################################################################################ -->
@@ -16,25 +16,19 @@
         <ul class="nospace group"><a href="{% url 'category' 'phones' %}">
             <li class="one_third first">
                 <article><i class="fas fa-hand-peace"></i><br>
-                    <h6 class="heading underline">Telefon</h6>
-                    <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu maecenas auctor viverra
-                        magna sed.</p>
+                    <h6 class="heading underline">Ichimliklar</h6>
                 </article>
             </li></a>
             <a href="{% url 'category' 'furniture' %}">
             <li class="one_third">
                 <article class="active"><i class="fas fa-microphone"></i><br>
                     <h6 class="heading underline">Jihozlar</h6>
-                    <p>In augue blandit ligula pharetra mattis vestibulum congue enim aenean felis augue pretium semper
-                        imperdiet.</p>
                 </article>
             </li></a>
             <a href="{% url 'category' 'accessories' %}">
             <li class="one_third">
                 <article><i class="fas fa-moon"></i><br>
                     <h6 class="heading underline">Aksisuar</h6>
-                    <p>Purus morbi ut risus nec orci bibendum commodo phasellus fringilla pede vitae tincidunt congue
-                        nibh lobortis.</p>
                 </article>
             </li></a>
         </ul>
@@ -88,7 +82,7 @@ padding:5px 0 5px 0;
 font-weight:bold;">{{product.name}}</a></div>
               <div class="product_img" style="padding:5px 0 5px 0;"><a href="{%url 'getpost' product.id %}">
                   {% if product.image%}
-                  <img src="{{ product.image.url }}" alt="" border="0" />
+                  <img src="{{ product.image.url }}" alt="" style="height: 200px;width: 150px;" border="0" />
               {% else %}
                         <img src="{% static 'images/demo/imgl.gif' %}" alt="" border="0">
                         {% endif %}</a></div>
@@ -103,14 +97,14 @@ font-weight:bold;">{{product.name}}</a></div>
             {% endfor %}
         </div>
         <center style="font-size: 24px">
-            {%if page_obj.has_previous %} {# whether the previous page exists #}
-            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
-            {% endif %}
-            <span>{{page_obj.number}}</span> {# the current page number #}
+<!--            {%if page_obj.has_previous %} {# whether the previous page exists #}-->
+<!--            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}-->
+<!--            {% endif %}-->
+<!--            <span>{{page_obj.number}}</span> {# the current page number #}-->
 
-            {%if page_obj.has_next %} {# whether the next page exists #}
-            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
-            {% endif %}
+<!--            {%if page_obj.has_next %} {# whether the next page exists #}-->
+<!--            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}-->
+<!--            {% endif %}-->
         </center>
         <div align="center">
 

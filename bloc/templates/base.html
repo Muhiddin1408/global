@@ -21,11 +21,11 @@ Licence URI: https://www.os-templates.com/template-terms
     <link rel="stylesheet" href="{% static 'layout/styles/owl.carousel.min.css' %}">
 </head>
 <body id="top">
-<div class="wrapper row1" style="background-color:#3397C8;">
+<div class="wrapper row1" style="background-color:#1b1464;">
     <header id="header" class="hoc clear">
         <div id="logo" class="fl_left">
             <!-- ################################################################################################ -->
-            <h1><a href="{% url 'index' %}"><img src="{% static '/images/logo.jpg'%}" alt=""></a></h1>
+            <h1><a href="{% url 'index' %}"><img src="{% static '/images/sofsavdo.png'%}" alt="" style="    width: 300px;height: 100px"></a></h1>
             <!-- ################################################################################################ -->
         </div>
         <nav id="mainav" class="fl_right">
@@ -34,15 +34,15 @@ Licence URI: https://www.os-templates.com/template-terms
                 <li><a href="{% url 'category' 'phones' %}">Phone</a></li>
                 <li><a href="{% url 'category' 'furniture' %}">Jihozlar</a></li>
                 <li><a href="{% url 'category' 'accessories' %}">Acsisuar</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="">Hi {{ user.username }}!</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
-                <li><a href="{% url 'cart' %}">Cart</a></li>
-                {% else %}
+<!--                {% if user.is_authenticated %}-->
+<!--                    <li><a href="">Hi {{ user.username }}!</a></li>-->
+<!--                <li><a href="{% url 'logout' %}">Log Out</a></li>-->
+<!--                <li><a href="{% url 'cart' %}">Cart</a></li>-->
+<!--                {% else %}-->
 
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                <li><a href="{% url 'register' %}">register</a></li>
-                {% endif %}
+<!--                    <li><a href="{% url 'login' %}">Log In</a></li>-->
+<!--                <li><a href="{% url 'register' %}">register</a></li>-->
+<!--                {% endif %}-->
 
 
 
@@ -59,7 +59,7 @@ Licence URI: https://www.os-templates.com/template-terms
 {% block content %}{% endblock %}
 
 
-<div class="wrapper row4">
+<div class="wrapper row4"  style="background-color:#1b1464;">
     <footer id="footer" class="hoc clear">
         <!-- ################################################################################################ -->
         <div class="one_quarter first">
@@ -131,15 +131,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row5">
-    <div id="copyright" class="hoc clear">
-        <!-- ################################################################################################ -->
-        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-        <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/"
-                                           title="Free Website Templates">OS Templates</a></p>
-        <!-- ################################################################################################ -->
-    </div>
-</div>
+
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
