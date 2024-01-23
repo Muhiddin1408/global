@@ -229,4 +229,8 @@ class CategoryDetailView(ListView):
 #     template_name = 'index.html'
 
 def home(request):
-    return render(request, 'index.html')
+    category = Category.objects.all()
+    context = {
+        'category': category,
+    }
+    return render(request, 'index.html', context)

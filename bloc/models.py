@@ -6,7 +6,9 @@ from django.db import models
 
 
 class Category(models.Model):
+    image = models.ImageField(upload_to='category', blank=True, null=True)
     name = models.CharField(max_length=125)
+    count = models.IntegerField(default=0)
 
 
 class Product(models.Model):
