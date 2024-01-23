@@ -230,7 +230,9 @@ class CategoryDetailView(ListView):
 
 def home(request):
     category = Category.objects.all()
+    sweet = Product.objects.all()
     context = {
         'category': category,
+        'sweet': category,
     }
     return render(request, 'index.html', context)
