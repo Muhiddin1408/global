@@ -995,8 +995,8 @@ jQuery(window).scroll(function() {headermenu();});
                                             </div>
                                             <div class="caption text-center">
                                                 <h4>
-                                                    <a href="https://oceantemplates.com/opencart/organic-grocery/grocery-themeforest/marlos/index.php?route=product/product&amp;product_id=51"> jhdfvjgsdf</a></h4>
-                                                <p class="price">  50 000 so'm
+                                                    <a href="https://oceantemplates.com/opencart/organic-grocery/grocery-themeforest/marlos/index.php?route=product/product&amp;product_id=51"> {{ i.name }}</a></h4>
+                                                <p class="price">  {{ i.price }}
                                                 </p>
 
                                                 <div class="button-group">
@@ -1016,11 +1016,11 @@ jQuery(window).scroll(function() {headermenu();});
                                                 </div>
                                                 <!-- quantity option -->
                                                 <div class="input-group col-xs-12 col-sm-12 qop">
-                                                    <label class="control-label col-sm-2 col-xs-2 qlable"
-                                                           for="input-quantity">qty</label>
+                                                    <form action="" method="post">
                                                     <input type="number" name="quantity" min="1" value="1" step="1"
                                                            id="fqty_51" class="form-control col-sm-2 col-xs-9 qtyq"/>
                                                     <input type="hidden" name="product_id" value=""/>
+                                                        </form>
 
                                                     <button type="button" class="acart" data-loading-text="Loading..."
                                                             onclick="var xqty='fqty_51';

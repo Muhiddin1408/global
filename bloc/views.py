@@ -236,3 +236,6 @@ def home(request):
         'sweet': category,
     }
     return render(request, 'index.html', context)
+
+
+# def add_product(request):
