@@ -137,12 +137,12 @@ def get_post(request, id):
     return render(request, 'pages/post.html', res)
 
 
-def get_category(request, id):
-    products = Product.objects.get(category__id=id)
+def get_category(request, pk):
+    products = Product.objects.filter(type_id=pk)
     res = {
         "products": products
     }
-    return render(request, 'pages/category.html', res)
+    return render(request, 'category_itm.html', res)
 
 
 # def get_jihoz(request, id):
