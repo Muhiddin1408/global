@@ -2,6 +2,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic import ListView, CreateView
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+
 from .models import Product, User, Order, OrderDetail, Cart, Statistics, Category
 from .forms import UserRegisterForm, ContactFrom, OrderCreateForm
 from django.urls import reverse_lazy
@@ -87,12 +90,21 @@ class Register(CreateView):
             return HttpResponseRedirect(reverse_lazy('register'))
 
 
-class CartView(ListView):
-    model = Cart
-    template_name = 'pages/cart.html'
-    context_object_name = 'carts'
+# class CartView(ListView):
+#     model = Cart
+#     template_name = 'pages/cart.html'
+#     context_object_name = 'carts'
 
-
+@api_view(['POST'])
+@permission_classes([AllowAny, ])
+def create_cart(request):
+    data = request.data
+    cart = Cart.objects.create(
+        user=request.user,
+        product_id=data.get('product'),
+        quantity=data.get('quantity'),
+        subtotel=data.get('subtotel')
+    )
 
 #
 #
@@ -102,8 +114,8 @@ class CartView(ListView):
 #         template_name = 'pages/jihozlar.html'
 #         context_object_name = 'jihozlars'
 #         paginate_by = 9
-# #
-# #
+#
+#
 # class PostView(ListView):
 #     model = Product
 #     if Product.type == 'PHONES':
